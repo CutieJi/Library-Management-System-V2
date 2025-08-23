@@ -139,8 +139,8 @@ Get-Content 'database\db_ucc_library.sql' | mysql -u root -p db_ucc_library
 
 ## List Default Account Login
 
-| Email                      | ID No.      | Password       | Role          |
-| -------------------------- | ------------- | ------------ | ------------- |
-| 1admin@ucc-caloocan.edu.ph | administrator | uccadmin1    | Administrator |
-| librarian@ucc.edu.ph       | librarian     | ucclibrarian | Librarian     |
-| default@user.com           | user          | uccian2025   | User          |
+| Email                      | ID No. | Password     | Role          |
+| -------------------------- | ------ | ------------ | ------------- |
+| 1admin@ucc-caloocan.edu.ph | admin1 | uccadmin1    | Administrator |
+| librarian@ucc.edu.ph       | admin  | ucclibrarian | Librarian     |
+| default@user.com           | user   | uccian2025   | User          |
