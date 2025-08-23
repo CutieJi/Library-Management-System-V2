@@ -1,4 +1,4 @@
-<h1 align="center">Codeigniter 3.1.13 - E-PERPUS-SOLO</h1>
+<h1 align="center">Codeigniter 3.1.13 - LIBRARY MANAGEMENT SYSTEM V2</h1>
 <p align="center">An open source Library Management System application with framework CodeIgniter version 3.1.13</p>
 
 <img src="./docs/img/thumbnail/ELMSThumbnail.png" alt="ELMSThumbnail">
@@ -61,19 +61,19 @@ This boilerplate build with some tech stack, such as:
 - Clone this repository using SSH
 
 ```shell
-git clone git@github.com:armandwipangestu/e-perpus-solo.git
+git clone git@github.com:CutieJi/Library-Management-System-V2.git
 ```
 
 - Clone this repository using HTTPS
 
 ```shell
-git clone https://github.com/armandwipangestu/e-perpus-solo.git
+git clone https://github.com/CutieJi/Library-Management-System-V2.git
 ```
 
 ### Create file `.env.development`
 
 ```sh
-cd e-perpus-solo
+cd Library-Management-System-V2
 ```
 
 ```sh
@@ -91,17 +91,18 @@ cp .env.example .env.development
 > DB_HOSTNAME=localhost
 > DB_USERNAME=root
 > DB_PASSWORD=
-> DB_NAME=e_perpus_solo
+> DB_NAME=db_ucc_library
 > DB_CONNECTION=mysqli
 >
 > # BASE PATH
 > # use localhost
-> BASE_URL=/e-perpus-solo
-> # use pretty url from laragon, like `e-perpus-solo.test`
+> BASE_URL=http://localhost/ucc-elibrary/
+> # use pretty url from laragon, like `ucc-library.test`
 > # BASE_URL=
 >
 > # APP NAME
-> APP_NAME=E-PERPUS-SOLO
+> APP_NAME=UCC-LIBRARY
+> HEADER="University of Caloocan City" 
 > ```
 
 ### Setup Database
@@ -112,7 +113,7 @@ cp .env.example .env.development
 
   ![Create New Database](./docs/img/setup-database/create_database_gui.png)
 
-- Import `e-perpus-solo/database/e_perpus_solo.sql` to the database using phpmyadmin or GUI
+- Import `Library-Management-System-V2/database/db_ucc_library.sql` to the database using phpmyadmin or GUI
 
   ![Import Database](./docs/img/setup-database/import_database_gui.png)
 
@@ -121,31 +122,25 @@ cp .env.example .env.development
 - Create a new Database with CLI
 
 ```sql
-CREATE DATABASE e_perpus_solo;
+CREATE DATABASE db_ucc_library;
 ```
 
 - Import schema to database using CLI
 
 ```shell
-mysql -u root -p e_perpus_solo < database/e_perpus_solo.sql
+mysql -u root -p db_ucc_library < database/db_ucc_library.sql
 ```
 
 or if you use powershell terminal, you can run this command:
 
 ```pwsh
-Get-Content 'database\e_perpus_solo.sql' | mysql -u root -p e_perpus_solo
+Get-Content 'database\db_ucc_library.sql' | mysql -u root -p db_ucc_library
 ```
 
 ## List Default Account Login
 
-| Email                | Username      | Password      | Role          |
-| -------------------- | ------------- | ------------- | ------------- |
-| default@admin.com    | administrator | 123qweasdzxc  | Administrator |
-| default@operator.com | operator      | 123qweasdzxc  | Operator      |
-| default@user.com     | user          | 123qweasdzxcz | User          |
-
-## ERD (Entity Relationship Diagram)
-
-You can view this ERD on this link [whimsical.com/erd-sbd-e-perpus-solo-SmsYrg1YNrizCCrQvuZjQf](https://whimsical.com/erd-sbd-e-perpus-solo-SmsYrg1YNrizCCrQvuZjQf)
-
-![E-PERPUS-SOLO ERD](./docs/img/erd/E-PERPUS-SOLO-ERD.png)
+| Email                      | ID No.      | Password       | Role          |
+| -------------------------- | ------------- | ------------ | ------------- |
+| 1admin@ucc-caloocan.edu.ph | administrator | uccadmin1    | Administrator |
+| librarian@ucc.edu.ph       | librarian     | ucclibrarian | Librarian     |
+| default@user.com           | user          | uccian2025   | User          |
