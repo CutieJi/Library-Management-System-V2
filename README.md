@@ -1,7 +1,7 @@
 <h1 align="center">Codeigniter 3.1.13 - E-PERPUS-SOLO</h1>
 <p align="center">An open source Library Management System application with framework CodeIgniter version 3.1.13</p>
 
-<img src="./docs/img/thumbnail/E-PERPUS-SOLO.png" alt="E-PERPUS-SOLO">
+<img src="./docs/img/thumbnail/ELMSThumbnail.png" alt="ELMSThumbnail">
 
 # Table of Contents
 
