@@ -600,10 +600,10 @@ class Book extends CI_Controller
             'email' => $this->session->userdata('email')
             ])->row_array();
 
-            $data['borrowed_books'] = $this->book->getAllListRequestBorrow();
-            $data['returned_books'] = $this->book->getAllListRequestReturn();
+        $data['borrowed_books'] = $this->book->getAllListRequestBorrow();
+        $data['returned_books'] = $this->book->getAllListRequestReturn();
 
-            $logoPath = FCPATH . 'assets/img/logo.png';
+        $logoPath = FCPATH . 'assets/img/logo.png';
             if (file_exists($logoPath) && is_readable($logoPath)) {
                 $ext = strtolower(pathinfo($logoPath, PATHINFO_EXTENSION));
                 $mime = ($ext === 'svg') ? 'image/svg+xml' : (($ext === 'jpg' || $ext === 'jpeg') ? 'image/jpeg' : 'image/png');
@@ -613,7 +613,7 @@ class Book extends CI_Controller
                 $data['logo'] = '';
             }
 
-            $sealPath = FCPATH . 'assets/img/logo.png';
+        $sealPath = FCPATH . 'assets/img/logo.png';
             if (file_exists($sealPath) && is_readable($sealPath)) {
                 $ext = strtolower(pathinfo($sealPath, PATHINFO_EXTENSION));
                 $mime = ($ext === 'svg') ? 'image/svg+xml' : (($ext === 'jpg' || $ext === 'jpeg') ? 'image/jpeg' : 'image/png');
@@ -623,9 +623,9 @@ class Book extends CI_Controller
                 $data['seal'] = '';
                 }
 
-                $html = $this->load->view('book/pdf_report_borrow_return', $data, TRUE);
+        $html = $this->load->view('book/pdf_report_borrow_return', $data, TRUE);
 
-                $this->load->helper('pdf');
-                pdf_create($html, 'borrow_return_report_' . date('Y-m-d'));
+        $this->load->helper('pdf');
+        pdf_create($html, 'borrow_return_report_' . date('Y-m-d'));
     }
 }
