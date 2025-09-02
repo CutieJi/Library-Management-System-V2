@@ -575,4 +575,57 @@ class Book extends CI_Controller
         $category = $this->db->get_where('book_category', ['id' => $categoryId])->row_array();
         exit(json_encode($category));
     }
+
+    public function report_borrow_return()
+    {
+        $data['title'] = 'Borrowed & Returned Books Report';
+        $data['user'] = $this->db->get_where('user_data', [
+            'email' => $this->session->userdata('email')
+            ])->row_array();
+            
+            $data['borrowed_books'] = $this->book->getAllListRequestBorrow();
+            $data['returned_books'] = $this->book->getAllListRequestReturn();
+            
+            $this->load->view('layout/layout_header', $data);
+            $this->load->view('layout/layout_sidebar');
+            $this->load->view('layout/layout_topbar');
+            $this->load->view('book/report_borrow_return', $data);
+            $this->load->view('layout/layout_footer');
+    }
+
+    public function download_report_pdf()
+    {
+        $data['title'] = 'Borrowed & Returned Books Report';
+        $data['user'] = $this->db->get_where('user_data', [
+            'email' => $this->session->userdata('email')
+            ])->row_array();
+
+            $data['borrowed_books'] = $this->book->getAllListRequestBorrow();
+            $data['returned_books'] = $this->book->getAllListRequestReturn();
+
+            $logoPath = FCPATH . 'assets/img/logo.png';
+            if (file_exists($logoPath) && is_readable($logoPath)) {
+                $ext = strtolower(pathinfo($logoPath, PATHINFO_EXTENSION));
+                $mime = ($ext === 'svg') ? 'image/svg+xml' : (($ext === 'jpg' || $ext === 'jpeg') ? 'image/jpeg' : 'image/png');
+                $logoData = file_get_contents($logoPath);
+                $data['logo'] = 'data:' . $mime . ';base64,' . base64_encode($logoData);
+            } else {
+                $data['logo'] = '';
+            }
+
+            $sealPath = FCPATH . 'assets/img/logo.png';
+            if (file_exists($sealPath) && is_readable($sealPath)) {
+                $ext = strtolower(pathinfo($sealPath, PATHINFO_EXTENSION));
+                $mime = ($ext === 'svg') ? 'image/svg+xml' : (($ext === 'jpg' || $ext === 'jpeg') ? 'image/jpeg' : 'image/png');
+                $sealData = file_get_contents($sealPath);
+                $data['seal'] = 'data:' . $mime . ';base64,' . base64_encode($sealData);
+            } else {
+                $data['seal'] = '';
+                }
+
+                $html = $this->load->view('book/pdf_report_borrow_return', $data, TRUE);
+
+                $this->load->helper('pdf');
+                pdf_create($html, 'borrow_return_report_' . date('Y-m-d'));
+    }
 }

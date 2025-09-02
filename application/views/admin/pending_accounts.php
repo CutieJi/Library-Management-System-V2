@@ -34,10 +34,7 @@
                                     <td><?= $user['gender']; ?></td>
                                     <td><?= $user['phone_number']; ?></td>
                                     <td>
-                                        <a href="<?= base_url('admin/approve/'.$user['id']); ?>"
-                                           onclick="return confirm('Are you sure you want to approve this account?');">
-                                            <span class="badge bg-success">Approve</span>
-                                        </a>
+                                        <a href="<?= base_url('admin/approve/'.$user['id']); ?>" class="approve-btn" data-url="<?= base_url('admin/approve/'.$user['id']); ?>"><span class="badge bg-success">Approve</span></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -49,3 +46,34 @@
     </div>
 </section>
 
+
+<script>
+document.addEventListener("click", function (e) {
+  const btn = e.target.closest(".approve-btn");
+  if (!btn) return;
+
+  e.preventDefault();
+  const dataUrl = btn.dataset.url || btn.href;
+
+  if (typeof Swal === "undefined") {
+    if (confirm("Are you sure you want to approve this account?")) {
+      window.location.assign(dataUrl);
+    }
+    return;
+  }
+
+  Swal.fire({
+    icon: "warning",
+    html: "Are you sure you want to approve this account?",
+    showCancelButton: true,
+    confirmButtonColor: "#d9534f",
+    cancelButtonColor: "#5cb85c",
+    confirmButtonText: "Yes, Approve",
+    cancelButtonText: "Cancel",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.assign(dataUrl);
+    }
+  });
+});
+</script>

@@ -6,7 +6,10 @@
                 <div class="d-flex justify-content-between align-items-center mb-5">
                     <div class="logo">
                         <a href="https://ucc-caloocan.edu.ph/">
-                            <h1 class="mt-3">University of Caloocan City eLibrary</h1>
+                            <h1 class="mt-1">
+                                <img  class src="<?= base_url(); ?>assets/img/vector/OpenDoodles/png/ucc.png" style="height: 80px; width: auto;" />
+                                University of Caloocan City eLibrary
+                            </h1>
                         </a>
                     </div>
 
