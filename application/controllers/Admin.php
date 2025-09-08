@@ -375,4 +375,55 @@ class Admin extends CI_Controller
         redirect('admin/pending_accounts');
     }
     }
+
+    public function tickets()
+    {
+    $this->load->model('Customer_service_model', 'tickets');
+    $data['title'] = 'Students Tickets';
+    $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
+    $data['tickets'] = $this->tickets->getAllTickets();
+
+    $this->load->view('layout/layout_header', $data);
+    $this->load->view('layout/layout_sidebar');
+    $this->load->view('layout/layout_topbar', $data);
+    $this->load->view('admin/admin_tickets', $data);
+    $this->load->view('layout/layout_footer');
+}
+
+public function view_ticket($id)
+{
+    $this->load->model('Customer_service_model', 'tickets');
+    $data['title'] = 'View Ticket';
+    $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
+    $data['ticket'] = $this->tickets->getTicketById($id);
+    $data['replies'] = $this->tickets->getRepliesByTicketId($id);
+
+    $this->form_validation->set_rules('message', 'Message', 'required');
+    if ($this->form_validation->run() === FALSE) {
+        $this->load->view('layout/layout_header', $data);
+        $this->load->view('layout/layout_sidebar');
+        $this->load->view('layout/layout_topbar', $data);
+        $this->load->view('admin/admin_ticket_view', $data);
+        $this->load->view('layout/layout_footer');
+    } else {
+        $reply = [
+            'ticket_id' => $id,
+            'message'   => htmlspecialchars($this->input->post('message')),
+            'is_admin'  => 1,
+            'user_id'   => NULL
+        ];
+        $this->tickets->addReply($reply);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Reply sent!</div>');
+        redirect('admin/view_ticket/' . $id);
+    }
+}
+
+public function close_ticket($id)
+{
+    $this->load->model('Customer_service_model', 'tickets');
+    $this->tickets->closeTicket($id);
+    $this->session->set_flashdata('message', '<div class="alert alert-success">Ticket closed!</div>');
+    redirect('admin/tickets');
+}
 }

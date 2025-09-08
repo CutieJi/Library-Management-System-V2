@@ -182,4 +182,63 @@ class Member extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success mb-4">Request return borrowed book successfully!</div>');
         redirect('member/list_return');
     }
+
+    public function tickets()
+{
+    $this->load->model('Customer_service_model', 'tickets');
+    $data['title'] = 'My Tickets';
+    $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
+    $data['tickets'] = $this->tickets->getTicketsByUser($data['user']['id']);
+
+    $this->form_validation->set_rules('subject', 'Subject', 'required');
+    $this->form_validation->set_rules('message', 'Message', 'required');
+
+    if ($this->form_validation->run() === FALSE) {
+        $this->load->view('layout/layout_header', $data);
+        $this->load->view('layout/layout_sidebar');
+        $this->load->view('layout/layout_topbar');
+        $this->load->view('member/member_tickets', $data);
+        $this->load->view('layout/layout_footer');
+    } else {
+        $ticket = [
+            'user_id' => $data['user']['id'],
+            'subject' => htmlspecialchars($this->input->post('subject')),
+            'message' => htmlspecialchars($this->input->post('message')),
+        ];
+        $this->tickets->createTicket($ticket);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Ticket created!</div>');
+        redirect('member/tickets');
+    }
+}
+
+public function view_ticket($id)
+{
+    $this->load->model('Customer_service_model', 'tickets');
+    $data['title'] = 'View Ticket';
+    $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
+    $data['ticket'] = $this->tickets->getTicketById($id);
+    $data['replies'] = $this->tickets->getRepliesByTicketId($id);
+
+    $this->form_validation->set_rules('message', 'Message', 'required');
+    if ($this->form_validation->run() === FALSE) {
+        $this->load->view('layout/layout_header', $data);
+        $this->load->view('layout/layout_sidebar');
+        $this->load->view('layout/layout_topbar');
+        $this->load->view('member/member_ticket_view', $data);
+        $this->load->view('layout/layout_footer');
+    } else {
+        $reply = [
+            'ticket_id' => $id,
+            'user_id'   => $data['user']['id'],
+            'message'   => htmlspecialchars($this->input->post('message')),
+            'is_admin'  => 0
+        ];
+        $this->tickets->addReply($reply);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Reply sent!</div>');
+        redirect('member/view_ticket/' . $id);
+    }
+}
+
 }
