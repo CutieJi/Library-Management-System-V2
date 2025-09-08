@@ -8,7 +8,7 @@
                 <table class="table table-hover table-lg" id="table1">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th>Ticket No.</th>
                             <th>Fullname</th>
                             <th>Subject</th>
                             <th>Status</th>
@@ -22,9 +22,9 @@
                                 <td colspan="8" class="text-center">No pending tickets</td>
                             </tr>
                         <?php else : ?>
-                            <?php $i = 1; foreach($tickets as $t) : ?>
+                            <?php $t['id'] = 1; foreach($tickets as $t) : ?>
                                 <tr>
-                                    <td><?= $i++; ?></td>
+                                    <td><?= $t['id']; ?></td>
                                     <td><?= $t['member_name']; ?></td>
                                     <td><?= $t['subject']; ?></td>
                                     <td><?= $t['status']; ?></td>

@@ -5,7 +5,7 @@
          </div>
          <div class="card-body">
             <div class="container">
-                <h3>My Tickets</h3>
+                <h3>My Ticket</h3>
                 <?= $this->session->flashdata('message'); ?>
 
                 <form method="post" class="mb-4">
@@ -26,7 +26,7 @@
                     <table class="table table-hover table-lg" id="table1">
                         <thead>
                             <tr>
-                                <th>No</th>
+                                <th>Ticket No.</th>
                                 <th>Subject</th>
                                 <th>Status</th>
                                 <th>Created</th>
@@ -39,9 +39,9 @@
                                     <td colspan="8" class="text-center">No pending tickets</td>
                                 </tr>
                                 <?php else : ?>
-                                    <?php $i = 1; foreach($tickets as $t) : ?>
+                                    <?php $t['id'] = 1; foreach($tickets as $t) : ?>
                                         <tr>
-                                            <td><?= $i++; ?></td>
+                                            <td><?= $t['id']; ?></td>
                                             <td><?= $t['subject']; ?></td>
                                             <td><?= ucfirst($t['status']); ?></td>
                                             <td><?= $t['created_at']; ?></td>

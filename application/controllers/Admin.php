@@ -379,7 +379,7 @@ class Admin extends CI_Controller
     public function tickets()
     {
     $this->load->model('Customer_service_model', 'tickets');
-    $data['title'] = 'Students Tickets';
+    $data['title'] = 'Students Ticket';
     $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
     $data['tickets'] = $this->tickets->getAllTickets();
 
