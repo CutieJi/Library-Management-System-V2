@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2025 at 01:49 PM
+-- Generation Time: Sep 10, 2025 at 11:01 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_icp_shelfhub`
+-- Database: `db_ucc_library`
 --
 
 -- --------------------------------------------------------
@@ -134,6 +134,52 @@ INSERT INTO `book_publisher` (`id`, `publisher`, `created_at`, `updated_at`) VAL
 (36, 'Pinagpala Publishing Services, Philippines', '2025-08-15 06:38:34', '2025-08-15 06:38:34'),
 (38, 'Adesh Silva', '2025-08-15 06:47:13', '2025-08-15 06:47:13'),
 (39, 'Kevin Huerta', '2025-08-15 06:48:26', '2025-08-15 06:48:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_tickets`
+--
+
+CREATE TABLE `customer_tickets` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `status` enum('open','closed') DEFAULT 'open',
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customer_tickets`
+--
+
+INSERT INTO `customer_tickets` (`id`, `user_id`, `subject`, `message`, `status`, `created_at`, `updated_at`) VALUES
+(1, 34, 'TICKET ITO HA!', 'TESTTT TESTTT', 'closed', '2025-09-10 16:59:59', '2025-09-10 17:00:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_ticket_replies`
+--
+
+CREATE TABLE `customer_ticket_replies` (
+  `id` int(11) NOT NULL,
+  `ticket_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `is_admin` tinyint(1) DEFAULT 0,
+  `message` text NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customer_ticket_replies`
+--
+
+INSERT INTO `customer_ticket_replies` (`id`, `ticket_id`, `user_id`, `is_admin`, `message`, `created_at`) VALUES
+(1, 1, 34, 0, 'HELLOOO', '2025-09-10 17:00:12'),
+(2, 1, NULL, 1, 'HI POOO, NAKAON KANA LOVE?', '2025-09-10 17:00:46');
 
 -- --------------------------------------------------------
 
@@ -270,20 +316,21 @@ CREATE TABLE `user_data` (
   `phone_number` varchar(13) NOT NULL,
   `role_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user_data`
 --
 
-INSERT INTO `user_data` (`id`, `first_name`, `last_name`, `username`, `avatar_image`, `email`, `password`, `gender`, `address`, `phone_number`, `role_id`, `created_at`, `updated_at`) VALUES
-(1, 'UCC', 'Admin', 'admin1', '689edff0ad8ca_1755242480.png', 'admin1@ucc.edu.ph', '$2y$10$bSFwfbvrkDO1Q6n9WiSlae2A1/Q//46uZAp8ZyZCceaHh2GHC2E56', 'Male', 'Biglang Awa Street, Cor 11th Ave Catleya, Caloocan, 1400 Metro Manila, Philippines', '09253106581', 1, '2023-01-28 13:35:18', '2025-08-15 07:21:20'),
-(2, 'Maica', 'Mercado', 'user', '689b49084c6e6_1755007240.jpg', 'default@user.com', '$2y$10$QTR9X1KfHvCEqhkHiXyREuhQYABIa1QZYXd.VEHQxWswokhPObkQS', 'Female', 'Quezon City', '09827748621', 2, '2023-02-28 13:36:29', '2025-08-12 14:00:40'),
-(26, 'UCC', 'Librarian', 'admin', '689eda851b73f_1755241093.png', 'librarian@ucc.edu.ph', '$2y$10$9Sq7dUssX5e9FG9axykZPuvbmlqTbEX08.UehLuoWnS1yYPDvVcb2', 'Male', 'Biglang Awa Street, Cor 11th Ave Catleya, Caloocan, 1400 Metro Manila, Philippines', '0953106581', 3, '2023-12-04 05:48:42', '2025-08-15 07:14:36'),
-(32, 'Dan Carlo', 'Jontilano', '20250399-S', 'default_male.jpg', 'jontilano@gmail.com', '$2y$10$G1UpakxunIQzHOQqTTploOMzRxwQQLoNDYTaw0Ios2kfvTDtJMtPi', 'Male', 'Caloocan City', '09543116742', 2, '2025-08-15 06:14:37', '2025-08-15 06:14:37'),
-(33, 'UCC', 'Admin', 'admin2', '689edefaef117_1755242234.png', 'admin2@ucc.edu.ph', '$2y$10$BaENNtcmIeDvSTin/1tEROziQjq5lIIW1oPrG9YpWxpuUAVmcdizy', 'Female', 'Biglang Awa Street, Cor 11th Ave Catleya, Caloocan, 1400 Metro Manila, Philippines', '09253106855', 1, '2025-08-15 07:15:12', '2025-08-15 07:17:15'),
-(34, 'Rosh', 'Ingel', '20250853-S', '689edfd8633bc_1755242456.jpg', 'roshjingel@gmail.com', '$2y$10$gWVYvIvefY1LBkbEaJmGsOR1fS3hNf4yrsmD1OPyfa7ZYhi5hdeIm', 'Male', '7th St. 11th Ave. Grace Park,. Caloocan City', '09759224758', 2, '2025-08-15 07:20:12', '2025-08-15 07:21:46');
+INSERT INTO `user_data` (`id`, `first_name`, `last_name`, `username`, `avatar_image`, `email`, `password`, `gender`, `address`, `phone_number`, `role_id`, `created_at`, `updated_at`, `status`) VALUES
+(1, 'UCC', 'Admin', 'admin1', '689edff0ad8ca_1755242480.png', '1admin@ucc-caloocan.edu.ph', '$2y$10$bSFwfbvrkDO1Q6n9WiSlae2A1/Q//46uZAp8ZyZCceaHh2GHC2E56', 'Male', 'Biglang Awa Street, Cor 11th Ave Catleya, Caloocan, 1400 Metro Manila, Philippines', '09253106581', 1, '2023-01-28 13:35:18', '2025-09-10 08:54:51', 1),
+(2, 'Maica', 'Mercado', 'user', '689b49084c6e6_1755007240.jpg', 'default@user.com', '$2y$10$QTR9X1KfHvCEqhkHiXyREuhQYABIa1QZYXd.VEHQxWswokhPObkQS', 'Female', 'Quezon City', '09827748621', 2, '2023-02-28 13:36:29', '2025-09-10 08:46:52', 1),
+(26, 'UCC', 'Librarian', 'admin', '689eda851b73f_1755241093.png', 'librarian@ucc.edu.ph', '$2y$10$9Sq7dUssX5e9FG9axykZPuvbmlqTbEX08.UehLuoWnS1yYPDvVcb2', 'Male', 'Biglang Awa Street, Cor 11th Ave Catleya, Caloocan, 1400 Metro Manila, Philippines', '0953106581', 3, '2023-12-04 05:48:42', '2025-09-10 08:46:49', 1),
+(32, 'Dan Carlo', 'Jontilano', '20250399-S', 'default_male.jpg', 'jontilano@gmail.com', '$2y$10$G1UpakxunIQzHOQqTTploOMzRxwQQLoNDYTaw0Ios2kfvTDtJMtPi', 'Male', 'Caloocan City', '09543116742', 2, '2025-08-15 06:14:37', '2025-09-10 08:45:27', 1),
+(33, 'UCC', 'Admin', 'admin2', '689edefaef117_1755242234.png', '2admin@ucc-caloocan.edu.ph', '$2y$10$BaENNtcmIeDvSTin/1tEROziQjq5lIIW1oPrG9YpWxpuUAVmcdizy', 'Female', 'Biglang Awa Street, Cor 11th Ave Catleya, Caloocan, 1400 Metro Manila, Philippines', '09253106855', 1, '2025-08-15 07:15:12', '2025-09-10 08:55:18', 1),
+(34, 'Rosh', 'Ingel', '20250853-S', '689edfd8633bc_1755242456.jpg', 'roshjingel@gmail.com', '$2y$10$gWVYvIvefY1LBkbEaJmGsOR1fS3hNf4yrsmD1OPyfa7ZYhi5hdeIm', 'Male', '7th St. 11th Ave. Grace Park,. Caloocan City', '09759224758', 2, '2025-08-15 07:20:12', '2025-09-10 08:45:19', 1);
 
 -- --------------------------------------------------------
 
@@ -749,7 +796,17 @@ INSERT INTO `user_log_action` (`id`, `user_id`, `action`, `created_at`, `updated
 (420, 34, 'Request return borrowed book \"Computer Programming For All Levels: Fundamentals of Computer Programming with C#, Java, Python for Absolute Beginners\" successfully!', '2025-08-15 07:26:09', '2025-08-15 07:26:09'),
 (421, 1, 'Operator has been verify request return!', '2025-08-15 07:26:37', '2025-08-15 07:26:37'),
 (422, 1, 'Submenu \"Pending Accounts\" has been added!', '2025-08-16 11:43:25', '2025-08-16 11:43:25'),
-(423, 1, 'Submenu \"Pending Accounts\" has been changed!', '2025-08-16 11:46:52', '2025-08-16 11:46:52');
+(423, 1, 'Submenu \"Pending Accounts\" has been changed!', '2025-08-16 11:46:52', '2025-08-16 11:46:52'),
+(424, 1, 'Admin \"admin1\" has been deleted user data \"\"!', '2025-09-10 08:46:49', '2025-09-10 08:46:49'),
+(425, 1, 'Admin \"admin1\" has been deleted user data \"\"!', '2025-09-10 08:46:52', '2025-09-10 08:46:52'),
+(426, 1, 'Submenu \"Tickets\" has been added!', '2025-09-10 08:48:12', '2025-09-10 08:48:12'),
+(427, 1, 'Submenu \"Tickets\" has been added!', '2025-09-10 08:51:01', '2025-09-10 08:51:01'),
+(428, 1, 'Admin \"admin1\" has been change user data \"UCC-ADMIN2\"!', '2025-09-10 08:52:30', '2025-09-10 08:52:30'),
+(429, 33, 'Admin \"UCC-ADMIN2\" has been change user data \"admin1\"!', '2025-09-10 08:54:51', '2025-09-10 08:54:51'),
+(430, 1, 'Admin \"admin1\" has been change user data \"admin2\"!', '2025-09-10 08:55:18', '2025-09-10 08:55:18'),
+(431, 1, 'Submenu \"Tickets\" has been changed!', '2025-09-10 08:56:51', '2025-09-10 08:56:51'),
+(432, 1, 'Submenu \"Tickets\" has been changed!', '2025-09-10 08:56:58', '2025-09-10 08:56:58'),
+(433, 1, 'Submenu \"Pending Accounts\" has been changed!', '2025-09-10 08:58:02', '2025-09-10 08:58:02');
 
 -- --------------------------------------------------------
 
@@ -843,7 +900,9 @@ INSERT INTO `user_sub_menu` (`id`, `title`, `url`, `icon`, `menu_id`, `created_a
 (20, 'Request Borrow', 'request', 'fas fa-fw fa-download', 9, '2023-12-04 05:38:58', '2023-12-04 05:38:58'),
 (21, 'Request Return', 'request/return', 'fas fa-fw fa-upload', 9, '2023-12-04 05:39:34', '2023-12-04 05:39:34'),
 (22, 'Dashboard', 'operator', 'bi bi-grid-fill', 10, '2023-12-04 05:53:33', '2023-12-04 05:53:33'),
-(24, 'Pending Accounts', 'admin/pending_accounts', 'bi bi-accounts', 1, '2025-08-16 11:43:25', '2025-08-16 11:46:52');
+(24, 'Pending Accounts', 'admin/pending_accounts', 'bi bi-person-fill-exclamation', 1, '2025-08-16 11:43:25', '2025-09-10 08:58:02'),
+(25, 'Tickets', 'admin/tickets', 'bi bi-envelope-fill', 1, '2025-09-10 08:48:12', '2025-09-10 08:56:51'),
+(26, 'Tickets', 'member/tickets', 'bi bi-envelope-fill', 7, '2025-09-10 08:51:01', '2025-09-10 08:56:58');
 
 --
 -- Indexes for dumped tables
@@ -872,6 +931,20 @@ ALTER TABLE `book_data`
 --
 ALTER TABLE `book_publisher`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `customer_tickets`
+--
+ALTER TABLE `customer_tickets`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `customer_ticket_replies`
+--
+ALTER TABLE `customer_ticket_replies`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ticket_id` (`ticket_id`);
 
 --
 -- Indexes for table `status`
@@ -956,6 +1029,18 @@ ALTER TABLE `book_publisher`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
+-- AUTO_INCREMENT for table `customer_tickets`
+--
+ALTER TABLE `customer_tickets`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `customer_ticket_replies`
+--
+ALTER TABLE `customer_ticket_replies`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
@@ -989,7 +1074,7 @@ ALTER TABLE `user_data`
 -- AUTO_INCREMENT for table `user_log_action`
 --
 ALTER TABLE `user_log_action`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=424;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=434;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
@@ -1007,7 +1092,23 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `customer_tickets`
+--
+ALTER TABLE `customer_tickets`
+  ADD CONSTRAINT `customer_tickets_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_data` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `customer_ticket_replies`
+--
+ALTER TABLE `customer_ticket_replies`
+  ADD CONSTRAINT `customer_ticket_replies_ibfk_1` FOREIGN KEY (`ticket_id`) REFERENCES `customer_tickets` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
