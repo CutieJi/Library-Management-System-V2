@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2025 at 11:01 AM
+-- Generation Time: Sep 10, 2025 at 11:27 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -327,10 +327,12 @@ CREATE TABLE `user_data` (
 INSERT INTO `user_data` (`id`, `first_name`, `last_name`, `username`, `avatar_image`, `email`, `password`, `gender`, `address`, `phone_number`, `role_id`, `created_at`, `updated_at`, `status`) VALUES
 (1, 'UCC', 'Admin', 'admin1', '689edff0ad8ca_1755242480.png', '1admin@ucc-caloocan.edu.ph', '$2y$10$bSFwfbvrkDO1Q6n9WiSlae2A1/Q//46uZAp8ZyZCceaHh2GHC2E56', 'Male', 'Biglang Awa Street, Cor 11th Ave Catleya, Caloocan, 1400 Metro Manila, Philippines', '09253106581', 1, '2023-01-28 13:35:18', '2025-09-10 08:54:51', 1),
 (2, 'Maica', 'Mercado', 'user', '689b49084c6e6_1755007240.jpg', 'default@user.com', '$2y$10$QTR9X1KfHvCEqhkHiXyREuhQYABIa1QZYXd.VEHQxWswokhPObkQS', 'Female', 'Quezon City', '09827748621', 2, '2023-02-28 13:36:29', '2025-09-10 08:46:52', 1),
-(26, 'UCC', 'Librarian', 'admin', '689eda851b73f_1755241093.png', 'librarian@ucc.edu.ph', '$2y$10$9Sq7dUssX5e9FG9axykZPuvbmlqTbEX08.UehLuoWnS1yYPDvVcb2', 'Male', 'Biglang Awa Street, Cor 11th Ave Catleya, Caloocan, 1400 Metro Manila, Philippines', '0953106581', 3, '2023-12-04 05:48:42', '2025-09-10 08:46:49', 1),
+(26, 'UCC', 'Librarian', 'admin', '689eda851b73f_1755241093.png', 'librarian@ucc-caloocan.edu.ph', '$2y$10$9Sq7dUssX5e9FG9axykZPuvbmlqTbEX08.UehLuoWnS1yYPDvVcb2', 'Male', 'Biglang Awa Street, Cor 11th Ave Catleya, Caloocan, 1400 Metro Manila, Philippines', '0953106581', 3, '2023-12-04 05:48:42', '2025-09-10 09:02:25', 1),
 (32, 'Dan Carlo', 'Jontilano', '20250399-S', 'default_male.jpg', 'jontilano@gmail.com', '$2y$10$G1UpakxunIQzHOQqTTploOMzRxwQQLoNDYTaw0Ios2kfvTDtJMtPi', 'Male', 'Caloocan City', '09543116742', 2, '2025-08-15 06:14:37', '2025-09-10 08:45:27', 1),
 (33, 'UCC', 'Admin', 'admin2', '689edefaef117_1755242234.png', '2admin@ucc-caloocan.edu.ph', '$2y$10$BaENNtcmIeDvSTin/1tEROziQjq5lIIW1oPrG9YpWxpuUAVmcdizy', 'Female', 'Biglang Awa Street, Cor 11th Ave Catleya, Caloocan, 1400 Metro Manila, Philippines', '09253106855', 1, '2025-08-15 07:15:12', '2025-09-10 08:55:18', 1),
-(34, 'Rosh', 'Ingel', '20250853-S', '689edfd8633bc_1755242456.jpg', 'roshjingel@gmail.com', '$2y$10$gWVYvIvefY1LBkbEaJmGsOR1fS3hNf4yrsmD1OPyfa7ZYhi5hdeIm', 'Male', '7th St. 11th Ave. Grace Park,. Caloocan City', '09759224758', 2, '2025-08-15 07:20:12', '2025-09-10 08:45:19', 1);
+(34, 'Rosh', 'Ingel', '20250853-S', '689edfd8633bc_1755242456.jpg', 'roshjingel@gmail.com', '$2y$10$gWVYvIvefY1LBkbEaJmGsOR1fS3hNf4yrsmD1OPyfa7ZYhi5hdeIm', 'Male', '7th St. 11th Ave. Grace Park,. Caloocan City', '09759224758', 2, '2025-08-15 07:20:12', '2025-09-10 08:45:19', 1),
+(35, 'kljndjsdhf', 'jksdhksdhf', 'klshdidshf', 'default_male.jpg', 'kajshdsd@jksfd.fs', '$2y$10$qssBaK3cMg1ZxgxUqgvJJOOzCMh1Nqt0EKHquzSNN461/DMWkzfHW', 'Male', 'sdfsdfsdfuiy28372', '89237423', 2, '2025-09-10 09:15:51', '2025-09-10 09:15:51', 0),
+(36, 'jkashdiuhsudh', 'ashdkjasdhs', 'qkjwheqwe', 'default_male.jpg', 'kjwgeduwegd@nsef.ef', '$2y$10$.tTDLxsYqnkViu8zvEDxxOAELWrARCk3s.cNXAKcYyPpCdtdI8NPe', 'Male', 'jqwgdhwgd123123', '34345', 2, '2025-09-10 09:19:30', '2025-09-10 09:19:30', 0);
 
 -- --------------------------------------------------------
 
@@ -806,7 +808,10 @@ INSERT INTO `user_log_action` (`id`, `user_id`, `action`, `created_at`, `updated
 (430, 1, 'Admin \"admin1\" has been change user data \"admin2\"!', '2025-09-10 08:55:18', '2025-09-10 08:55:18'),
 (431, 1, 'Submenu \"Tickets\" has been changed!', '2025-09-10 08:56:51', '2025-09-10 08:56:51'),
 (432, 1, 'Submenu \"Tickets\" has been changed!', '2025-09-10 08:56:58', '2025-09-10 08:56:58'),
-(433, 1, 'Submenu \"Pending Accounts\" has been changed!', '2025-09-10 08:58:02', '2025-09-10 08:58:02');
+(433, 1, 'Submenu \"Pending Accounts\" has been changed!', '2025-09-10 08:58:02', '2025-09-10 08:58:02'),
+(434, 1, 'Admin \"admin1\" has been change user data \"admin\"!', '2025-09-10 09:02:25', '2025-09-10 09:02:25'),
+(435, 1, 'Submenu \"Book Report\" has been added!', '2025-09-10 09:06:51', '2025-09-10 09:06:51'),
+(436, 1, 'Submenu \"Book Report\" has been changed!', '2025-09-10 09:27:28', '2025-09-10 09:27:28');
 
 -- --------------------------------------------------------
 
@@ -902,7 +907,8 @@ INSERT INTO `user_sub_menu` (`id`, `title`, `url`, `icon`, `menu_id`, `created_a
 (22, 'Dashboard', 'operator', 'bi bi-grid-fill', 10, '2023-12-04 05:53:33', '2023-12-04 05:53:33'),
 (24, 'Pending Accounts', 'admin/pending_accounts', 'bi bi-person-fill-exclamation', 1, '2025-08-16 11:43:25', '2025-09-10 08:58:02'),
 (25, 'Tickets', 'admin/tickets', 'bi bi-envelope-fill', 1, '2025-09-10 08:48:12', '2025-09-10 08:56:51'),
-(26, 'Tickets', 'member/tickets', 'bi bi-envelope-fill', 7, '2025-09-10 08:51:01', '2025-09-10 08:56:58');
+(26, 'Tickets', 'member/tickets', 'bi bi-envelope-fill', 7, '2025-09-10 08:51:01', '2025-09-10 08:56:58'),
+(27, 'Book Report', 'book/report_borrow_return', 'bi bi-file-earmark-arrow-down-fill', 6, '2025-09-10 09:06:51', '2025-09-10 09:27:28');
 
 --
 -- Indexes for dumped tables
@@ -1068,13 +1074,13 @@ ALTER TABLE `user_access_menu`
 -- AUTO_INCREMENT for table `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `user_log_action`
 --
 ALTER TABLE `user_log_action`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=434;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=437;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
@@ -1092,7 +1098,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Constraints for dumped tables
