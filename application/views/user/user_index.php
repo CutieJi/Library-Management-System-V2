@@ -79,7 +79,7 @@
 
                     <div class="form-group">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" value="<?= $user['email']; ?>" disabled>
+                        <input type="email" name="email" id="email" class="form-control" value="<?= $user['email']; ?>">
                         <?= form_error('email', '<label for="email" class="form-label text-danger mt-2">', '</label>'); ?>
                     </div>
 

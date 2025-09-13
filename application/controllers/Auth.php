@@ -89,8 +89,10 @@ class Auth extends CI_Controller
         $this->session->unset_userdata('id_user');
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
-
-        if ($this->session->flashdata('message')) {
+            
+        if ($this->session->flashdata('email_changed')) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success ml-4 mr-4">Your email was updated. Please log in again.</div>');
+        } elseif ($this->session->flashdata('message')) {
             $this->session->set_flashdata('message', '<div class="alert alert-success ml-4 mr-4">Your account has been deleted!</div>');
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-success ml-4 mr-4">You have successfully logout!</div>');

@@ -27,6 +27,8 @@ class User extends CI_Controller
         $this->form_validation->set_rules('address', 'Address', 'required|trim', ['required' => "Address can't be empty"]);
         // Phone Number Field
         $this->form_validation->set_rules('phone_number', 'Phone Number', 'required|trim', ['required' => "Phone Number can't be empty"]);
+        // Email Field
+        $this->form_validation->set_rules('email', 'Email', 'required|trim', ['required' => "Email can't be empty"]);
 
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('layout/layout_header', $data);
@@ -41,6 +43,7 @@ class User extends CI_Controller
                 'gender' => htmlspecialchars($this->input->post('gender', true)),
                 'address' => htmlspecialchars($this->input->post('address', true)),
                 'phone_number' => htmlspecialchars($this->input->post('phone_number', true)),
+                'email' => htmlspecialchars($this->input->post('email', true)),
             ];
 
             // Check if there are images to be uploaded
@@ -75,19 +78,34 @@ class User extends CI_Controller
 
             $this->db->where('id', $this->session->userdata('id_user'));
             $this->db->update('user_data', $data);
+            
+            if ($data['email'] !== $this->session->userdata('email'))
+                {
+                    $userLogAction =
+                    [
+                        'user_id' => $this->session->userdata('id_user'),
+                        'action' => 'Email changed, forcing logout!'
+                    ];
+                    
+                    $this->logaction->insertLog($userLogAction);
 
-            $userLogAction = [
-                'user_id' => $this->session->userdata('id_user'),
-                'action' => 'Profile edited!',
-            ];
+                    $this->session->set_flashdata('email_changed', true);
+                    redirect('auth/logout');
+                }
+                else
+                {
+                    $userLogAction =
+                    [
+                        'user_id' => $this->session->userdata('id_user'),
+                        'action' => 'Profile edited!',
+                    ];
+                            
+                        $this->logaction->insertLog($userLogAction);
+                            
+                        $this->session->set_flashdata('message','<div class="alert alert-success mb-4">Profile edited!</div>');
+                        redirect('user');
+                }
 
-            $this->logaction->insertLog($userLogAction);
-
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-success mb-4">Profile edited!</div>'
-            );
-            redirect('user');
         }
     }
 
