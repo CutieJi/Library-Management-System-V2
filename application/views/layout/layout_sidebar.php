@@ -5,7 +5,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
                     <a href="https://ucc-caloocan.edu.ph/">
-                        <img src="<?= base_url(); ?>assets/img/vector/OpenDoodles/png/ucc.png" alt="Logo" srcset="" />
+                        <img src="<?= base_url(); ?>assets/img/vector/OpenDoodles/png/ucc.png" alt="Logo" srcset="" style="height: 50px; width: auto;" />
                         <h5 class="mt-3"><?= getenv('APP_NAME'); ?></h5>
                     </a>
                 </div>

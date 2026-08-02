@@ -379,7 +379,7 @@ class Admin extends CI_Controller
     public function tickets()
     {
     $this->load->model('Customer_service_model', 'tickets');
-    $data['title'] = 'Students Ticket';
+    $data['title'] = 'Tickets';
     $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
     $data['tickets'] = $this->tickets->getAllTickets();
 
@@ -425,5 +425,19 @@ public function close_ticket($id)
     $this->tickets->closeTicket($id);
     $this->session->set_flashdata('message', '<div class="alert alert-success">Ticket closed!</div>');
     redirect('admin/tickets');
+}
+
+public function pogi()
+    {
+    $this->load->model('Customer_service_model', 'tickets');
+    $data['title'] = 'Students Ticket';
+    $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
+    $data['tickets'] = $this->tickets->getAllTickets();
+
+    $this->load->view('layout/layout_header', $data);
+    $this->load->view('layout/layout_sidebar');
+    $this->load->view('layout/layout_topbar', $data);
+    $this->load->view('admin/pogi', $data);
+    $this->load->view('layout/layout_footer');
 }
 }

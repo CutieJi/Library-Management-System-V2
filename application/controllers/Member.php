@@ -186,7 +186,7 @@ class Member extends CI_Controller
     public function tickets()
 {
     $this->load->model('Customer_service_model', 'tickets');
-    $data['title'] = 'My Tickets';
+    $data['title'] = 'Tickets';
     $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
     $data['tickets'] = $this->tickets->getTicketsByUser($data['user']['id']);
 
@@ -215,7 +215,7 @@ class Member extends CI_Controller
 public function view_ticket($id)
 {
     $this->load->model('Customer_service_model', 'tickets');
-    $data['title'] = 'View Ticket';
+    $data['title'] = 'View Tickets';
     $data['user'] = $this->db->get_where('user_data', ['email' => $this->session->userdata('email')])->row_array();
     $data['ticket'] = $this->tickets->getTicketById($id);
     $data['replies'] = $this->tickets->getRepliesByTicketId($id);

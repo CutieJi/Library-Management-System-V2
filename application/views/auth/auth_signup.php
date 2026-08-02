@@ -6,9 +6,9 @@
                 <div class="d-flex justify-content-between align-items-center mb-5">
                     <div class="logo">
                         <a href="https://ucc-caloocan.edu.ph/">
-                            <h1 class="mt-1">
-                                <img  class src="<?= base_url(); ?>assets/img/vector/OpenDoodles/png/ucc.png" style="height: 80px; width: auto;" />
-                                University of Caloocan City eLibrary
+                            <h1 class="mt-1" style="font-size: 30px">
+                                <img  class src="<?= base_url(); ?>assets/img/vector/OpenDoodles/png/ucc.png" style="height: 60px; width: auto;" />
+                                UCC - eLibrary
                             </h1>
                         </a>
                     </div>
@@ -58,11 +58,11 @@
 
                     <!-- Username Field -->
                     <div class="form-group position-relative has-icon-left mb-4">
-                        <input type="text" id="username" name="username" value="<?= set_value('username'); ?>" class="form-control form-control-xl" placeholder="Username">
+                        <input type="text" id="username" name="username" value="<?= set_value('username'); ?>" class="form-control form-control-xl" maxlength="10" pattern="[0-9]{8}-[A-Z]" placeholder="Student No.">
                         <div class="form-control-icon">
                             <i class="bi bi-person"></i>
                         </div>
-                        <label for="username" class="form-label text-muted mt-2">Only lowercase letters and numbers, no symbols. Example: <strong>foobar</strong></label><br />
+                        <label for="username" class="form-label text-muted mt-2">Only numbers and uppercase letter, with symbol. Example: <strong>20250001-S</strong></label><br />
                         <?= form_error('username', '<label for="username" class="form-label text-danger mt-2">', '</label>'); ?>
                     </div>
 

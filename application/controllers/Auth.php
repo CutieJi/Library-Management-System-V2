@@ -36,52 +36,92 @@ class Auth extends CI_Controller
 
     private function _signin()
     {
-    $identity = htmlspecialchars($this->input->post('identity', true));
-    $password = $this->input->post('password');
+        $identity = trim($this->input->post('identity', true));
+        $password = $this->input->post('password');
 
-    // Determine if input is email or username
-    $is_email = filter_var($identity, FILTER_VALIDATE_EMAIL);
+        // Check if input is an email
+        $is_email = filter_var($identity, FILTER_VALIDATE_EMAIL);
 
-    // Check if the user exists based on email or username
-    if ($is_email) {
-        $user = $this->db->get_where('user_data', ['email' => $identity])->row_array();
-    } else {
-        $user = $this->db->get_where('user_data', ['username' => $identity])->row_array();
-    }
+        // If not an email, validate Student No. format (20250000-S)
+        if (!$is_email) {
+            if (strtolower($identity) != 'admin1' && strtolower($identity) != 'admin2' && strtolower($identity) != 'admin') {
+                if (!preg_match('/^[0-9]{8}-[A-Za-z]$/', $identity)) {
+                    $this->session->set_flashdata(
+                        'message',
+                        '<div class="alert alert-warning ml-4 mr-4">
+                    Invalid Student No. format. Please use <strong>20250000-S</strong>.
+                </div>'
+                    );
+                    redirect('auth');
+                    return;
+                }
 
-    if ($user) {
-        // 🔴 CHECK STATUS FIRST
-        if ($user['status'] == 0) {
-            $this->session->set_flashdata('message', '<div class="alert alert-warning ml-4 mr-4">Your account is still waiting for admin confirmation.</div>');
-            redirect('auth');
+                // Convert the last letter to uppercase
+                $identity = strtoupper($identity);
+            }
         }
 
-        // ✅ If approved (status = 1), verify the password
-        if (password_verify($password, $user['password'])) {
-            $data = [
-                'id_user'  => $user['id'],
-                'email'    => $user['email'],
-                'role_id'  => $user['role_id']
-            ];
-            $this->session->set_userdata($data);
-
-            if ($user['role_id'] == 1) {
-                redirect('admin');
-            }
-            if ($user['role_id'] == 2) {
-                redirect('member');
-            }
-            if ($user['role_id'] == 3) {
-                redirect('operator');
-            }
+        // Search user by email or Student No.
+        if ($is_email) {
+            $user = $this->db->get_where('user_data', ['email' => $identity])->row_array();
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-warning ml-4 mr-4">The password you entered is incorrect</div>');
+            $user = $this->db->get_where('user_data', ['username' => $identity])->row_array();
+        }
+
+        if ($user) {
+
+            // Check account approval
+            if ($user['status'] == 0) {
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-warning ml-4 mr-4">
+                    Your account is still waiting for admin confirmation.
+                </div>'
+                );
+                redirect('auth');
+                return;
+            }
+
+            // Verify password
+            if (password_verify($password, $user['password'])) {
+
+                $data = [
+                    'id_user' => $user['id'],
+                    'email' => $user['email'],
+                    'role_id' => $user['role_id']
+                ];
+
+                $this->session->set_userdata($data);
+
+                if ($user['role_id'] == 1) {
+                    redirect('admin');
+                } elseif ($user['role_id'] == 2) {
+                    redirect('member');
+                } elseif ($user['role_id'] == 3) {
+                    redirect('operator');
+                }
+
+            } else {
+
+                $this->session->set_flashdata(
+                    'message',
+                    '<div class="alert alert-warning ml-4 mr-4">
+                    The password you entered is incorrect.
+                </div>'
+                );
+                redirect('auth');
+            }
+
+        } else {
+
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger ml-4 mr-4">
+                The account you entered was not found.
+            </div>'
+            );
             redirect('auth');
         }
-    } else {
-        $this->session->set_flashdata('message', '<div class="alert alert-danger ml-4 mr-4">The account you entered was not found</div>');
-        redirect('auth');
-    }
     }
 
     public function logout()
@@ -89,7 +129,7 @@ class Auth extends CI_Controller
         $this->session->unset_userdata('id_user');
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
-            
+
         if ($this->session->flashdata('email_changed')) {
             $this->session->set_flashdata('message', '<div class="alert alert-success ml-4 mr-4">Your email was updated. Please log in again.</div>');
         } elseif ($this->session->flashdata('message')) {

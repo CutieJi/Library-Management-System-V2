@@ -578,7 +578,7 @@ class Book extends CI_Controller
 
     public function report_borrow_return()
     {
-        $data['title'] = 'Borrowed & Returned Books Report';
+        $data['title'] = 'Book Report';
         $data['user'] = $this->db->get_where('user_data', [
             'email' => $this->session->userdata('email')
             ])->row_array();
@@ -628,4 +628,5 @@ class Book extends CI_Controller
                 $this->load->helper('pdf');
                 pdf_create($html, 'borrow_return_report_' . date('Y-m-d'));
     }
+    
 }
