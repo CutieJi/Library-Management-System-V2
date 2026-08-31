@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2025 at 11:27 AM
+-- Generation Time: Aug 31, 2026 at 05:18 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -156,7 +156,7 @@ CREATE TABLE `customer_tickets` (
 --
 
 INSERT INTO `customer_tickets` (`id`, `user_id`, `subject`, `message`, `status`, `created_at`, `updated_at`) VALUES
-(1, 34, 'TICKET ITO HA!', 'TESTTT TESTTT', 'closed', '2025-09-10 16:59:59', '2025-09-10 17:00:50');
+(2, 2, 'asdasd', 'asdasd', 'closed', '2026-08-02 14:39:37', '2026-08-02 14:40:08');
 
 -- --------------------------------------------------------
 
@@ -178,8 +178,9 @@ CREATE TABLE `customer_ticket_replies` (
 --
 
 INSERT INTO `customer_ticket_replies` (`id`, `ticket_id`, `user_id`, `is_admin`, `message`, `created_at`) VALUES
-(1, 1, 34, 0, 'HELLOOO', '2025-09-10 17:00:12'),
-(2, 1, NULL, 1, 'HI POOO, NAKAON KANA LOVE?', '2025-09-10 17:00:46');
+(3, 2, NULL, 1, 'asdasd', '2026-08-02 14:39:46'),
+(4, 2, 2, 0, 'asdasd', '2026-08-02 14:39:52'),
+(5, 2, NULL, 1, 'asdasd', '2026-08-02 14:39:57');
 
 -- --------------------------------------------------------
 
@@ -326,13 +327,10 @@ CREATE TABLE `user_data` (
 
 INSERT INTO `user_data` (`id`, `first_name`, `last_name`, `username`, `avatar_image`, `email`, `password`, `gender`, `address`, `phone_number`, `role_id`, `created_at`, `updated_at`, `status`) VALUES
 (1, 'UCC', 'Admin', 'admin1', '689edff0ad8ca_1755242480.png', '1admin@ucc-caloocan.edu.ph', '$2y$10$bSFwfbvrkDO1Q6n9WiSlae2A1/Q//46uZAp8ZyZCceaHh2GHC2E56', 'Male', 'Biglang Awa Street, Cor 11th Ave Catleya, Caloocan, 1400 Metro Manila, Philippines', '09253106581', 1, '2023-01-28 13:35:18', '2025-09-10 08:54:51', 1),
-(2, 'Maica', 'Mercado', 'user', '689b49084c6e6_1755007240.jpg', 'default@user.com', '$2y$10$QTR9X1KfHvCEqhkHiXyREuhQYABIa1QZYXd.VEHQxWswokhPObkQS', 'Female', 'Quezon City', '09827748621', 2, '2023-02-28 13:36:29', '2025-09-10 08:46:52', 1),
-(26, 'UCC', 'Librarian', 'admin', '689eda851b73f_1755241093.png', 'librarian@ucc-caloocan.edu.ph', '$2y$10$9Sq7dUssX5e9FG9axykZPuvbmlqTbEX08.UehLuoWnS1yYPDvVcb2', 'Male', 'Biglang Awa Street, Cor 11th Ave Catleya, Caloocan, 1400 Metro Manila, Philippines', '0953106581', 3, '2023-12-04 05:48:42', '2025-09-10 09:02:25', 1),
-(32, 'Dan Carlo', 'Jontilano', '20250399-S', 'default_male.jpg', 'jontilano@gmail.com', '$2y$10$G1UpakxunIQzHOQqTTploOMzRxwQQLoNDYTaw0Ios2kfvTDtJMtPi', 'Male', 'Caloocan City', '09543116742', 2, '2025-08-15 06:14:37', '2025-09-10 08:45:27', 1),
-(33, 'UCC', 'Admin', 'admin2', '689edefaef117_1755242234.png', '2admin@ucc-caloocan.edu.ph', '$2y$10$BaENNtcmIeDvSTin/1tEROziQjq5lIIW1oPrG9YpWxpuUAVmcdizy', 'Female', 'Biglang Awa Street, Cor 11th Ave Catleya, Caloocan, 1400 Metro Manila, Philippines', '09253106855', 1, '2025-08-15 07:15:12', '2025-09-10 08:55:18', 1),
-(34, 'Rosh', 'Ingel', '20250853-S', '689edfd8633bc_1755242456.jpg', 'roshjingel@gmail.com', '$2y$10$gWVYvIvefY1LBkbEaJmGsOR1fS3hNf4yrsmD1OPyfa7ZYhi5hdeIm', 'Male', '7th St. 11th Ave. Grace Park,. Caloocan City', '09759224758', 2, '2025-08-15 07:20:12', '2025-09-10 08:45:19', 1),
-(35, 'kljndjsdhf', 'jksdhksdhf', 'klshdidshf', 'default_male.jpg', 'kajshdsd@jksfd.fs', '$2y$10$qssBaK3cMg1ZxgxUqgvJJOOzCMh1Nqt0EKHquzSNN461/DMWkzfHW', 'Male', 'sdfsdfsdfuiy28372', '89237423', 2, '2025-09-10 09:15:51', '2025-09-10 09:15:51', 0),
-(36, 'jkashdiuhsudh', 'ashdkjasdhs', 'qkjwheqwe', 'default_male.jpg', 'kjwgeduwegd@nsef.ef', '$2y$10$.tTDLxsYqnkViu8zvEDxxOAELWrARCk3s.cNXAKcYyPpCdtdI8NPe', 'Male', 'jqwgdhwgd123123', '34345', 2, '2025-09-10 09:19:30', '2025-09-10 09:19:30', 0);
+(2, 'User', 'Default', 'user', '689edefaef117_1755242234.png', 'default@user.com', '$2y$10$QTR9X1KfHvCEqhkHiXyREuhQYABIa1QZYXd.VEHQxWswokhPObkQS', 'Female', 'Quezon City', '09827748621', 2, '2023-02-28 13:36:29', '2026-08-02 06:22:36', 1),
+(3, 'UCC', 'Librarian', 'admin', '689eda851b73f_1755241093.png', 'librarian@ucc-caloocan.edu.ph', '$2y$10$9Sq7dUssX5e9FG9axykZPuvbmlqTbEX08.UehLuoWnS1yYPDvVcb2', 'Male', 'Biglang Awa Street, Cor 11th Ave Catleya, Caloocan, 1400 Metro Manila, Philippines', '0953106581', 3, '2023-12-04 05:48:42', '2026-08-02 06:16:41', 1),
+(5, 'UCC', 'Admin', 'admin2', '689edefaef117_1755242234.png', '2admin@ucc-caloocan.edu.ph', '$2y$10$BaENNtcmIeDvSTin/1tEROziQjq5lIIW1oPrG9YpWxpuUAVmcdizy', 'Female', 'Biglang Awa Street, Cor 11th Ave Catleya, Caloocan, 1400 Metro Manila, Philippines', '09253106855', 1, '2025-08-15 07:15:12', '2026-08-02 06:16:48', 1),
+(37, 'Rosh', 'Ingel', '20250853-S', 'default_male.jpg', 'roshjingel@gmail.com', '$2y$10$na0U.94YKT9CH9yAUUkH/OjKNzVDkU4TLX6Yq0UHaqzfdKRW4hXqW', 'Male', '7th St. 11th Ave, Caloocan City', '09759224757', 2, '2026-08-02 06:20:16', '2026-08-25 02:09:18', 1);
 
 -- --------------------------------------------------------
 
@@ -811,7 +809,19 @@ INSERT INTO `user_log_action` (`id`, `user_id`, `action`, `created_at`, `updated
 (433, 1, 'Submenu \"Pending Accounts\" has been changed!', '2025-09-10 08:58:02', '2025-09-10 08:58:02'),
 (434, 1, 'Admin \"admin1\" has been change user data \"admin\"!', '2025-09-10 09:02:25', '2025-09-10 09:02:25'),
 (435, 1, 'Submenu \"Book Report\" has been added!', '2025-09-10 09:06:51', '2025-09-10 09:06:51'),
-(436, 1, 'Submenu \"Book Report\" has been changed!', '2025-09-10 09:27:28', '2025-09-10 09:27:28');
+(436, 1, 'Submenu \"Book Report\" has been changed!', '2025-09-10 09:27:28', '2025-09-10 09:27:28'),
+(437, 34, 'Profile edited!', '2025-09-13 01:21:05', '2025-09-13 01:21:05'),
+(438, 34, 'Email changed, forcing logout!', '2025-09-13 01:28:23', '2025-09-13 01:28:23'),
+(439, 34, 'Email changed, forcing logout!', '2025-09-13 01:41:08', '2025-09-13 01:41:08'),
+(440, 34, 'Email changed, forcing logout!', '2025-09-13 01:42:43', '2025-09-13 01:42:43'),
+(441, 34, 'Email changed, forcing logout!', '2025-09-13 01:52:22', '2025-09-13 01:52:22'),
+(442, 34, 'Email changed, forcing logout!', '2025-09-13 01:52:43', '2025-09-13 01:52:43'),
+(443, 1, 'Submenu \"sdasd\" has been added!', '2026-01-08 11:45:18', '2026-01-08 11:45:18'),
+(444, 1, 'Submenu \"sdasd\" has been changed!', '2026-01-08 11:45:43', '2026-01-08 11:45:43'),
+(445, 1, 'Submenu \"sdasd\" has been deleted!', '2026-01-08 11:56:38', '2026-01-08 11:56:38'),
+(446, 1, 'Admin \"admin1\" has been deleted user data \"\"!', '2026-03-19 15:33:33', '2026-03-19 15:33:33'),
+(447, 1, 'Admin \"admin1\" has been deleted user data \"\"!', '2026-08-02 06:20:25', '2026-08-02 06:20:25'),
+(448, 1, 'Admin \"admin1\" has been deleted user data \"\"!', '2026-08-02 06:21:47', '2026-08-02 06:21:47');
 
 -- --------------------------------------------------------
 
@@ -1038,19 +1048,19 @@ ALTER TABLE `book_publisher`
 -- AUTO_INCREMENT for table `customer_tickets`
 --
 ALTER TABLE `customer_tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `customer_ticket_replies`
 --
 ALTER TABLE `customer_ticket_replies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `transaction_borrow`
@@ -1068,25 +1078,25 @@ ALTER TABLE `transaction_return`
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `user_log_action`
 --
 ALTER TABLE `user_log_action`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=437;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=449;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
 --
 ALTER TABLE `user_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user_role`
