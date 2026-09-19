@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2026 at 05:18 PM
+-- Generation Time: Sep 19, 2026 at 05:17 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -156,7 +156,8 @@ CREATE TABLE `customer_tickets` (
 --
 
 INSERT INTO `customer_tickets` (`id`, `user_id`, `subject`, `message`, `status`, `created_at`, `updated_at`) VALUES
-(2, 2, 'asdasd', 'asdasd', 'closed', '2026-08-02 14:39:37', '2026-08-02 14:40:08');
+(2, 2, 'asdasd', 'asdasd', 'closed', '2026-08-02 14:39:37', '2026-08-02 14:40:08'),
+(3, 37, 'DAMAGED BOOK', 'MAY DAMAGE YUNG BOOK NA NAHIRAM KO THEN AYAW SYA TANGAPIN SA PAG RETURN DAHIL MAY BAYAD DAW', 'closed', '2026-09-01 09:51:25', '2026-09-01 09:52:18');
 
 -- --------------------------------------------------------
 
@@ -180,7 +181,9 @@ CREATE TABLE `customer_ticket_replies` (
 INSERT INTO `customer_ticket_replies` (`id`, `ticket_id`, `user_id`, `is_admin`, `message`, `created_at`) VALUES
 (3, 2, NULL, 1, 'asdasd', '2026-08-02 14:39:46'),
 (4, 2, 2, 0, 'asdasd', '2026-08-02 14:39:52'),
-(5, 2, NULL, 1, 'asdasd', '2026-08-02 14:39:57');
+(5, 2, NULL, 1, 'asdasd', '2026-08-02 14:39:57'),
+(6, 3, NULL, 1, 'ANONG BOOK PO SYA?', '2026-09-01 09:51:48'),
+(7, 3, 37, 0, 'UTS BOOK', '2026-09-01 09:52:01');
 
 -- --------------------------------------------------------
 
@@ -1048,13 +1051,13 @@ ALTER TABLE `book_publisher`
 -- AUTO_INCREMENT for table `customer_tickets`
 --
 ALTER TABLE `customer_tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `customer_ticket_replies`
 --
 ALTER TABLE `customer_ticket_replies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `status`
